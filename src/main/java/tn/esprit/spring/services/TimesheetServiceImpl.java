@@ -82,7 +82,7 @@ public class TimesheetServiceImpl implements ITimesheetService {
 			}
 
 			if (!chefDeLaMission) {
-				log.debug("l'employe doit etre chef de departement de la mission en question ");
+				log.debug("l'employe doit etre chef de departement de la mission en question");
 				return;
 			}
 		}
