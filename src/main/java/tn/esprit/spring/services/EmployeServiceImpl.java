@@ -95,7 +95,7 @@ public class EmployeServiceImpl implements IEmployeService {
 
 	public String getEmployePrenomById(int employeId) {
 		Employe employeManagedEntity = employeRepository.findById(employeId).orElse(null);
-		return employeManagedEntity != null ? employeManagedEntity.getPrenom() : "";
+		return employeManagedEntity != null ? employeManagedEntity.getPrenom() : null;
 	}
 
 	public void deleteEmployeById(int employeId) {
