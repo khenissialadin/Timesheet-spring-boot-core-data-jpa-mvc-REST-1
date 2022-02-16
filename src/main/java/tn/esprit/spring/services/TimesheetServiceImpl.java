@@ -73,7 +73,7 @@ public class TimesheetServiceImpl implements ITimesheetService {
 			}
 			// verifier s'il est le chef de departement de la mission en question
 			boolean chefDeLaMission = false;
-			for (Departement dep : validateur.getDepartements()) {
+			for (Departement dep : validateur.getDepartements())  {
 				if (mission != null && mission.getDepartement() != null
 						&& dep.getId() == mission.getDepartement().getId()) {
 					chefDeLaMission = true;
