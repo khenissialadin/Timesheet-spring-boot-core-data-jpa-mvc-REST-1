@@ -16,7 +16,7 @@ public interface EmployeRepository extends CrudRepository<Employe, Integer>  {
 	
 	
 	@Query("SELECT count(*) FROM Employe")
-    public int countemp();
+    public Integer countemp();
 	
     @Query("SELECT nom FROM Employe")
     public List<String> employeNames();
@@ -40,7 +40,7 @@ public interface EmployeRepository extends CrudRepository<Employe, Integer>  {
     public void deleteAllContratJPQL();
     
     @Query("select c.salaire from Contrat c join c.employe e where e.id=:employeId")
-    public float getSalaireByEmployeIdJPQL(@Param("employeId")int employeId);
+    public Float getSalaireByEmployeIdJPQL(@Param("employeId")int employeId);
     
     
     @Query("Select "

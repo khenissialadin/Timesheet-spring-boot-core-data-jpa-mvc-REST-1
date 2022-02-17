@@ -25,7 +25,7 @@ public class IControllerEmployeImpl  {
 	@Autowired
 	ITimesheetService itimesheetservice;
 
-	public int ajouterEmploye(Employe employe)
+	public Integer ajouterEmploye(Employe employe)
 	{
 		iemployeservice.ajouterEmploye(employe);
 		return employe.getId();
@@ -49,7 +49,7 @@ public class IControllerEmployeImpl  {
 	}
 
 	
-	public int ajouterContrat(Contrat contrat) {
+	public Integer ajouterContrat(Contrat contrat) {
 		iemployeservice.ajouterContrat(contrat);
 		return contrat.getReference();
 	}
@@ -74,7 +74,7 @@ public class IControllerEmployeImpl  {
 	}
 
 	
-	public int getNombreEmployeJPQL() {
+	public Integer getNombreEmployeJPQL() {
 		
 		return iemployeservice.getNombreEmployeJPQL();
 	}
@@ -103,7 +103,7 @@ public class IControllerEmployeImpl  {
 	}
 
 	
-	public float getSalaireByEmployeIdJPQL(int employeId) {
+	public Float getSalaireByEmployeIdJPQL(int employeId) {
 		// TODO Auto-generated method stub
 		return iemployeservice.getSalaireByEmployeIdJPQL(employeId);
 	}

@@ -31,7 +31,7 @@ public class EmployeServiceImpl implements IEmployeService {
 	@Autowired
 	TimesheetRepository timesheetRepository;
 
-	public int ajouterEmploye(Employe employe) {
+	public Integer ajouterEmploye(Employe employe) {
 		employeRepository.save(employe);
 		return employe.getId();
 	}
@@ -80,7 +80,7 @@ public class EmployeServiceImpl implements IEmployeService {
 		}
 	}
 
-	public int ajouterContrat(Contrat contrat) {
+	public Integer ajouterContrat(Contrat contrat) {
 		contratRepoistory.save(contrat);
 		return contrat.getReference();
 	}
@@ -122,7 +122,7 @@ public class EmployeServiceImpl implements IEmployeService {
 		}
 	}
 
-	public int getNombreEmployeJPQL() {
+	public Integer getNombreEmployeJPQL() {
 		return employeRepository.countemp();
 	}
 
@@ -144,7 +144,7 @@ public class EmployeServiceImpl implements IEmployeService {
 		employeRepository.deleteAllContratJPQL();
 	}
 
-	public float getSalaireByEmployeIdJPQL(int employeId) {
+	public Float getSalaireByEmployeIdJPQL(int employeId) {
 		return employeRepository.getSalaireByEmployeIdJPQL(employeId);
 	}
 

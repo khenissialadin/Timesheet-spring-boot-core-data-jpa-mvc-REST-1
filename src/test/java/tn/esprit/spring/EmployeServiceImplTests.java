@@ -55,18 +55,18 @@ public class EmployeServiceImplTests {
 	@Test
 	public void getSalaireMoyenByDepartementIdTest() {
 		Departement dep =new Departement();
-		int id = entrepriseService.ajouterDepartement(dep);
-		double sal = employeService.getSalaireMoyenByDepartementId(id);
-		Assert.assertEquals(0, sal, 0);
+		Integer id = entrepriseService.ajouterDepartement(dep);
+		Double sal = employeService.getSalaireMoyenByDepartementId(id);
+		Assert.assertNull(sal);
 		entrepriseService.deleteDepartementById(id);
 	}
 	
 	@Test
 	public void getSalaireByEmployeIdJPQLTest() {
 		Employe emp =new Employe();
-		int id = employeService.ajouterEmploye(emp);
-		double sal = employeService.getSalaireByEmployeIdJPQL(id);
-		Assert.assertEquals(0, sal, 0);
+		Integer id = employeService.ajouterEmploye(emp);
+		Float sal = employeService.getSalaireByEmployeIdJPQL(id);
+		Assert.assertNull(sal);
 		employeService.deleteEmployeById(id);
 	}
 	
