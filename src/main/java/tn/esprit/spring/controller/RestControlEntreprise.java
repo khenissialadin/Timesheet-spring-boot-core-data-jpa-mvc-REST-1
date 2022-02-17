@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.spring.RequestModels.DepartementRequestModel;
+import tn.esprit.spring.RequestModels.EntrepriseRequestModel;
 import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.services.IEmployeService;
@@ -30,14 +32,19 @@ public class RestControlEntreprise {
 	ITimesheetService itimesheetservice;
 	
 	// Ajouter Entreprise : http://localhost:8081/SpringMVC/servlet/ajouterEntreprise
-	//{"id":1,"name":"SSII Consulting","raisonSocial":"Cite El Ghazela"}
-
+	
 	@PostMapping("/ajouterEntreprise")
 	@ResponseBody
-	public int ajouterEntreprise(@RequestBody Entreprise ssiiConsulting) {
-		ientrepriseservice.ajouterEntreprise(ssiiConsulting);
-		return ssiiConsulting.getId();
+	public int ajouterEntreprise(@RequestBody EntrepriseRequestModel entrepriseRequest) {
+		Entreprise e = new Entreprise();
+		e.setId(entrepriseRequest.id);
+		e.setDepartements(entrepriseRequest.departements);
+		e.setName(entrepriseRequest.name);
+		e.setRaisonSocial(entrepriseRequest.raisonSocial);
+		ientrepriseservice.ajouterEntreprise(e);
+		return e.getId();
 	}
+	
 	
 	// http://localhost:8081/SpringMVC/servlet/affecterDepartementAEntreprise/1/1
     @PutMapping(value = "/affecterDepartementAEntreprise/{iddept}/{identreprise}") 
@@ -61,14 +68,23 @@ public class RestControlEntreprise {
 		return ientrepriseservice.getEntrepriseById(entrepriseId);
 	}
     
-    // http://localhost:8081/SpringMVC/servlet/ajouterDepartement
- 	//{"id":1,"name":"Telecom"}
 
- 	@PostMapping("/ajouterDepartement")
- 	@ResponseBody
-	public int ajouterDepartement(@RequestBody Departement dep) {
-		return ientrepriseservice.ajouterDepartement(dep);
-	}
+ 	
+    // http://localhost:8081/SpringMVC/servlet/ajouterDepartement
+  	@PostMapping("/ajouterDepartement")
+  	@ResponseBody
+ 	public int ajouterDepartement(@RequestBody DepartementRequestModel dep) {
+  		Departement d= new Departement();
+  		d.setId(dep.id);
+  		d.setName(dep.name);
+  		d.setEmployes(dep.employes);
+  		d.setEntreprise(dep.entreprise);
+  		d.setMissions(dep.missions);
+ 		return ientrepriseservice.ajouterDepartement(d);
+ 	}
+ 	
+ 	
+ 	
 	
  	 // http://localhost:8081/SpringMVC/servlet/getAllDepartementsNamesByEntreprise/1
     @GetMapping(value = "getAllDepartementsNamesByEntreprise/{identreprise}")
