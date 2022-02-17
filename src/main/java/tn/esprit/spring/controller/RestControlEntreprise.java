@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.RequestModels.DepartementRequestModel;
-import tn.esprit.spring.RequestModels.EntrepriseRequestModel;
 import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.entities.Entreprise;
+import tn.esprit.spring.requestmodels.DepartementRequestModel;
+import tn.esprit.spring.requestmodels.EntrepriseRequestModel;
 import tn.esprit.spring.services.IEmployeService;
 import tn.esprit.spring.services.IEntrepriseService;
 import tn.esprit.spring.services.ITimesheetService;
@@ -37,10 +37,10 @@ public class RestControlEntreprise {
 	@ResponseBody
 	public int ajouterEntreprise(@RequestBody EntrepriseRequestModel entrepriseRequest) {
 		Entreprise e = new Entreprise();
-		e.setId(entrepriseRequest.id);
-		e.setDepartements(entrepriseRequest.departements);
-		e.setName(entrepriseRequest.name);
-		e.setRaisonSocial(entrepriseRequest.raisonSocial);
+		e.setId(entrepriseRequest.getId());
+		e.setDepartements(entrepriseRequest.getDepartementsRM());
+		e.setName(entrepriseRequest.getNameRM());
+		e.setRaisonSocial(entrepriseRequest.getRaisonSocialRM());
 		ientrepriseservice.ajouterEntreprise(e);
 		return e.getId();
 	}
@@ -75,11 +75,11 @@ public class RestControlEntreprise {
   	@ResponseBody
  	public int ajouterDepartement(@RequestBody DepartementRequestModel dep) {
   		Departement d= new Departement();
-  		d.setId(dep.id);
-  		d.setName(dep.name);
-  		d.setEmployes(dep.employes);
-  		d.setEntreprise(dep.entreprise);
-  		d.setMissions(dep.missions);
+  		d.setId(dep.getId());
+  		d.setName(dep.getNameRM());
+  		d.setEmployes(dep.getEmployesRM());
+  		d.setEntreprise(dep.getEntrepriseRM());
+  		d.setMissions(dep.getMissionsRM());
  		return ientrepriseservice.ajouterDepartement(d);
  	}
  	
