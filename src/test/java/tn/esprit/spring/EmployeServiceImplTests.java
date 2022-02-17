@@ -10,8 +10,11 @@ import java.util.List;
 
 import org.junit.Assert;
 
+import tn.esprit.spring.entities.Contrat;
+import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.services.IEmployeService;
+import tn.esprit.spring.services.IEntrepriseService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -19,6 +22,9 @@ public class EmployeServiceImplTests {
 	
 	@Autowired
 	IEmployeService employeService;
+	
+	@Autowired
+	IEntrepriseService entrepriseService;
 	
 	@Test
 	public void ajouterEmployeTest() {
@@ -44,6 +50,34 @@ public class EmployeServiceImplTests {
 	public void getAllEmployesTest() {
 		List<Employe> emps = employeService.getAllEmployes();
 		Assert.assertNotNull(emps);
+	}
+	
+	@Test
+	public void getSalaireMoyenByDepartementIdTest() {
+		Departement dep =new Departement();
+		int id = entrepriseService.ajouterDepartement(dep);
+		double sal = employeService.getSalaireMoyenByDepartementId(id);
+		Assert.assertEquals(0, sal, 0);
+		entrepriseService.deleteDepartementById(id);
+	}
+	
+	@Test
+	public void getSalaireByEmployeIdJPQLTest() {
+		Employe emp =new Employe();
+		int id = employeService.ajouterEmploye(emp);
+		double sal = employeService.getSalaireByEmployeIdJPQL(id);
+		Assert.assertEquals(0, sal, 0);
+		employeService.deleteEmployeById(id);
+	}
+	
+	@Test
+	public void deleteAllContratJPQLTest() {
+		Contrat ctr =new Contrat();
+		int id = employeService.ajouterContrat(ctr);
+		Assert.assertNotEquals(0, id);
+		employeService.deleteContratById(id);
+		Contrat c = employeService.getContratById(id);
+		Assert.assertNull(c);
 	}
 
 

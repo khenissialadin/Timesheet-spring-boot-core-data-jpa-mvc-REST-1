@@ -60,6 +60,7 @@ public class EmployeServiceImpl implements IEmployeService {
 				depManagedEntity.getEmployes().add(employeManagedEntity);
 
 			}
+			deptRepoistory.save(depManagedEntity);
 		}
 
 	}
@@ -72,6 +73,7 @@ public class EmployeServiceImpl implements IEmployeService {
 			for (int index = 0; index < employeNb; index++) {
 				if (dep.getEmployes().get(index).getId() == employeId) {
 					dep.getEmployes().remove(index);
+					deptRepoistory.save(dep);
 					break;// a revoir
 				}
 			}
@@ -157,6 +159,12 @@ public class EmployeServiceImpl implements IEmployeService {
 
 	public List<Employe> getAllEmployes() {
 		return (List<Employe>) employeRepository.findAll();
+	}
+
+	@Override
+	public Contrat getContratById(int contratId) {
+		return contratRepoistory.findById(contratId).orElse(null);
+		
 	}
 
 }
