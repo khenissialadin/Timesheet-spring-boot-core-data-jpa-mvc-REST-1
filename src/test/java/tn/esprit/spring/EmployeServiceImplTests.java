@@ -24,7 +24,11 @@ public class EmployeServiceImplTests {
 		employe.setEmail("efsffs");
 		employe.setNom("aaaa");
 		employe.setPrenom("sfsfe");
-		Assert.assertNotEquals(employeService.ajouterEmploye(employe), 0);
+		int id = employeService.ajouterEmploye(employe);
+		Assert.assertNotEquals(id, 0);
+		employeService.deleteEmployeById(id);
+		String prenom = employeService.getEmployePrenomById(id);
+		Assert.assertNull(prenom);
 	}
 
 
