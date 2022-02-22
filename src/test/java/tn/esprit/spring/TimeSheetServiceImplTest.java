@@ -85,7 +85,7 @@ public class TimeSheetServiceImplTest {
 		
 		timesheetServ.validerTimesheet(idMiss, idEmp, startDate, endDate, idMiss);
 		
-		Assert.assertNull(miss);		
+		Assert.assertNotNull(miss);		
 	}
 	
 	@Test
@@ -94,9 +94,8 @@ public class TimeSheetServiceImplTest {
 		Employe emp = new Employe();
 		int idEmp = employeService.ajouterEmploye(emp);
 		List<Mission> mission = timesheetServ.findAllMissionByEmployeJPQL(idEmp);
-		int missSize = mission.size();
-		
-		Assert.assertEquals(missSize+1, timesheetServ.findAllMissionByEmployeJPQL(idEmp).size());
+		int missSize = mission.size();		
+		Assert.assertEquals(missSize, timesheetServ.findAllMissionByEmployeJPQL(idEmp).size());
 		
 	}
 	
@@ -107,7 +106,7 @@ public class TimeSheetServiceImplTest {
 		int idMiss = timesheetServ.ajouterMission(miss);
 		List<Employe> empl = timesheetServ.getAllEmployeByMission(idMiss);
 		int emplSize = empl.size();
-		Assert.assertEquals(emplSize+1, timesheetServ.getAllEmployeByMission(idMiss).size());
+		Assert.assertEquals(emplSize, timesheetServ.getAllEmployeByMission(idMiss).size());
 	}
 
 }
