@@ -256,7 +256,7 @@ public class EmployeServiceImplTests {
 		
 		employeService.deleteEmployeById(empId);		
 		Optional<Employe> employesAfterDeleteAction = employeRepository.findById(employe.getId());
-		assertEquals(true, employesAfterDeleteAction.isEmpty());
+		assertEquals(false, employesAfterDeleteAction.isPresent());
 		
 	}
 	/*@Test
