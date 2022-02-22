@@ -32,6 +32,7 @@ public class TimesheetServiceImpl implements ITimesheetService {
 	@Autowired
 	EmployeRepository employeRepository;
 
+
 	public int ajouterMission(Mission mission) {
 		missionRepository.save(mission);
 		return mission.getId();
@@ -102,6 +103,11 @@ public class TimesheetServiceImpl implements ITimesheetService {
 
 	public List<Employe> getAllEmployeByMission(int missionId) {
 		return timesheetRepository.getAllEmployeByMission(missionId);
+	}
+
+	@Override
+	public void removeTimeSheet(Timesheet timesSheet) {
+		timesheetRepository.delete(timesSheet);
 	}
 
 }
