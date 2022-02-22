@@ -241,7 +241,7 @@ public class EmployeServiceImplTests {
 		
 		employeService.deleteContratById(idocntract);
 		Optional<Contrat> ctr = contratRepository.findById(contrat.getReference());
-		assertEquals(true, ctr.isEmpty());
+		assertEquals(false, ctr.isPresent());
 		
 	}
 	@Test
