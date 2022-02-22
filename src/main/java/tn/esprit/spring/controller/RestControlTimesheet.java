@@ -32,7 +32,7 @@ public class RestControlTimesheet {
 
 	@PostMapping("/ajouterMission")
 	@ResponseBody
-	public int ajouterMission(@RequestBody Mission mission) {
+	public int ajouterMission(@PathVariable Mission mission) {
 		itimesheetservice.ajouterMission(mission);
 		return mission.getId();
 	}
