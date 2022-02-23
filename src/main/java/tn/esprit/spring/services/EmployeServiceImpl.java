@@ -172,8 +172,7 @@ public class EmployeServiceImpl implements IEmployeService {
 	public Employe findEmployeById(int employeId) {
 		Optional<Employe> emp = employeRepository.findById(employeId);
 		if (emp.isPresent()) {
-			Employe emp_ = emp.get();
-			return emp_;
+			return emp.get();
 		}
 		return null;
 	}
