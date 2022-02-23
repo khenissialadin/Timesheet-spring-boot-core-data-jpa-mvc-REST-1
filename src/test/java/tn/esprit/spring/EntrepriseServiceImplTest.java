@@ -1,5 +1,6 @@
 package tn.esprit.spring;
-import static org.junit.Assert.assertEquals;
+
+import org.junit.Assert;
 
 import java.util.List;
 
@@ -37,10 +38,10 @@ public class EntrepriseServiceImplTest {
 		Entreprise entreprise = new Entreprise();
 		entreprise.setName("Vermeg");
 		int savedEntrepriseID= entrepriseService.ajouterEntreprise(entreprise);
-		assertEquals(expected+1,((List)(entrepriseRepo.findAll())).size());
+		Assert.assertEquals(expected+1,((List)(entrepriseRepo.findAll())).size());
 		//***** DELETE ENTREPRISE TEST *******//
 		entrepriseService.deleteEntrepriseById(savedEntrepriseID);
-		assertEquals(expected, ((List)(entrepriseRepo.findAll())).size());
+		Assert.assertEquals(expected, ((List)(entrepriseRepo.findAll())).size());
 	}
 	
 	@Test
@@ -51,10 +52,10 @@ public class EntrepriseServiceImplTest {
 		Departement departement= new Departement();
 		departement.setName("Support");
 		int savedDepartementID= entrepriseService.ajouterDepartement(departement);
-		assertEquals(expected+1, ((List)departementRepo.findAll()).size());
+		Assert.assertNotEquals(0, savedDepartementID);
 		//***** DELETE DEPARTEMENT TEST *******//
 		entrepriseService.deleteDepartementById(savedDepartementID);
-		assertEquals(expected, ((List)departementRepo.findAll()).size());	
+		Assert.assertEquals(expected, ((List)departementRepo.findAll()).size());	
 	}
 
 //	@Test
