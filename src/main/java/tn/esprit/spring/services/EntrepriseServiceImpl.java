@@ -73,10 +73,15 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		
 	}
 
-
 	public Entreprise getEntrepriseById(int entrepriseId) {
 		Entreprise entreprise= entrepriseRepoistory.findById(entrepriseId).orElse(null);
 		return entreprise != null ? entreprise : null;			
+	}
+
+	@Override
+	public Departement getDepartementById(int departementId) {
+		Departement departement= deptRepoistory.findById(departementId).orElse(null);
+		return departement!=null? departement :null;
 	}
 
 }
